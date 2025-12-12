@@ -4,8 +4,6 @@
       <i class="fas fa-clipboard-list"></i> Activity Logs
     </h2>
 
-
-    <!-- Search by Username -->
     <div class="mb-4">
       <label for="searchUsername" class="form-label fw-bold"> Search by Username</label>
       <div class="input-group">
@@ -17,7 +15,6 @@
       </div>
     </div>
 
-    <!-- Logs Table -->
     <div class="card shadow-sm">
       <div class="card-body">
         <table class="table table-striped table-hover">
@@ -43,14 +40,10 @@
           </tbody>
         </table>
 
-        <!-- Pagination -->
-        <!-- Pagination -->
         <div class="d-flex justify-content-between align-items-center mt-4">
           <button class="btn btn-outline-success" :disabled="currentPage === 1" @click="fetchLogs(currentPage - 1)">
             ← Previous
           </button>
-
-          <!-- Dynamic Page Numbers -->
           <div>
             <button v-for="page in visiblePages" :key="page" class="btn btn-sm"
               :class="page === currentPage ? 'btn-success' : 'btn-outline-success'" @click="fetchLogs(page)">
@@ -66,8 +59,6 @@
 
       </div>
     </div>
-
-    <!-- Error -->
     <div v-if="error" class="alert alert-danger mt-3">
       {{ error }}
     </div>
@@ -87,7 +78,7 @@ export default {
       error: null,
       currentPage: 1,
       totalPages: 1,
-      searchUsername: "", // search field
+      searchUsername: "", 
     };
   },
   methods: {
@@ -111,7 +102,6 @@ export default {
     async searchLogsByUsername() {
       try {
         if (!this.searchUsername) {
-          // ✅ If empty, reload all logs
           this.fetchLogs();
           return;
         }
@@ -138,11 +128,10 @@ export default {
       const total = this.totalPages;
       const current = this.currentPage;
 
-      // Show up to 10 pages at a time
       let start = Math.max(current - 4, 1);
       let end = Math.min(start + 9, total);
 
-      // Adjust start if we're near the end
+
       if (end - start < 9) {
         start = Math.max(end - 9, 1);
       }
@@ -154,7 +143,7 @@ export default {
     }
   },
   mounted() {
-    this.fetchLogs(); // ✅ show all logs on load
+    this.fetchLogs(); 
   },
 };
 </script>

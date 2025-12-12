@@ -1,11 +1,8 @@
 <template>
     <div class="container mt-5">
         <h2 class="text-center mb-4">
-            <i class="fas fa-tasks"></i> User Actions
+            <i class="fas fa-tasks"></i> User Activity Logs
         </h2>
-
-
-        <!-- Search by User ID -->
         <div class="mb-4">
             <label for="searchUserId" class="form-label fw-bold"> Search by User ID</label>
             <div class="input-group">
@@ -17,7 +14,6 @@
             </div>
         </div>
 
-        <!-- Logs Table -->
         <div class="card shadow-sm">
             <div class="card-body">
                 <table v-if="userActions.length > 0" class="table table-striped table-hover">
@@ -32,7 +28,6 @@
                     </thead>
                     <tbody>
                         <tr v-for="(action, index) in userActions" :key="index">
-                            <!-- Use index + 1 instead of action.id -->
                             <td>{{ index + 1 }}</td>
                             <td>{{ action.user_id }}</td>
                             <td>{{ action.action }}</td>
@@ -47,7 +42,6 @@
             </div>
         </div>
 
-        <!-- Error -->
         <div v-if="error" class="alert alert-danger mt-3">
             {{ error }}
         </div>
@@ -65,7 +59,7 @@ export default {
             baseUrl: inject("baseUrl"),
             userActions: [],
             error: null,
-            searchUserId: "", // search field
+            searchUserId: ""
         };
     },
     mounted() {
@@ -106,7 +100,7 @@ export default {
         },
         onSearchInput() {
             if (!this.searchUserId) {
-                this.fetchUserActions(); // reload all records automatically when field is cleared
+                this.fetchUserActions(); 
             }
         },
     },

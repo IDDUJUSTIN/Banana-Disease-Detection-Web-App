@@ -4,8 +4,6 @@
       <i class="fas fa-tachometer-alt"></i> Dashboard
     </h2>
 
-
-    <!-- Quick Stats -->
     <div class="stats-grid">
       <div class="stat-card">
         <h3>Total Predictions</h3>
@@ -25,7 +23,6 @@
       </div>
     </div>
 
-    <!-- Recent Predictions Table -->
     <div class="card shadow-sm mt-4">
       <div class="card-body">
         <h4 class="mb-3">
@@ -73,7 +70,6 @@
   </div>
 </template>
 
-
 <script>
 import axios from "axios";
 import { inject } from "vue";
@@ -91,7 +87,6 @@ export default {
       },
       recentPredictions: [],
 
-      // pagination state
       currentPage: 1,
       totalPages: 1,
       perPage: 10,
@@ -99,7 +94,6 @@ export default {
   },
   async mounted() {
     try {
-      // Fetch stats
       const statsResponse = await axios.get(this.baseUrl + "/stats", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -108,7 +102,6 @@ export default {
 
       this.overall = statsResponse.data.overall;
       this.stats = { panama: 0, blackSigatoka: 0, yellowSigatoka: 0 };
-
       statsResponse.data.breakdown.forEach(item => {
         if (item.prediction.toLowerCase().includes("panama")) {
           this.stats.panama = item.total;
@@ -118,8 +111,6 @@ export default {
           this.stats.yellowSigatoka = item.total;
         }
       });
-
-      // Fetch first page of predictions
       this.fetchLogs(1);
     } catch (error) {
       console.error(error.response?.data || error);
@@ -136,8 +127,6 @@ export default {
             },
           }
         );
-
-        // Laravel paginator returns { data, current_page, last_page, ... }
         this.recentPredictions = response.data.data;
         this.currentPage = response.data.current_page;
         this.totalPages = response.data.last_page;
@@ -167,10 +156,7 @@ export default {
     },
   },
 };
-
 </script>
-
-
 
 <style scoped>
 .dashboard-container {

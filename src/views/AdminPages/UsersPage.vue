@@ -4,8 +4,6 @@
       <i class="fas fa-users"></i> User Management
     </h2>
 
-
-    <!-- Search by Email -->
     <div class="mb-4">
       <label for="searchEmail" class="form-label fw-bold"> Search User by Email</label>
       <div class="input-group">
@@ -17,7 +15,6 @@
       </div>
     </div>
 
-    <!-- Users Table -->
     <div class="card shadow-sm">
       <div class="card-body">
         <table class="table table-striped table-hover">
@@ -43,13 +40,11 @@
           </tbody>
         </table>
 
-        <!-- Pagination Controls -->
         <div class="d-flex justify-content-between align-items-center mt-4">
           <button class="btn btn-outline-success" :disabled="currentPage === 1" @click="fetchUsers(currentPage - 1)">
             ← Previous
           </button>
 
-          <!-- Dynamic Page Numbers -->
           <div>
             <button v-for="page in visiblePages" :key="page" class="btn btn-sm"
               :class="page === currentPage ? 'btn-success' : 'btn-outline-success'" @click="fetchUsers(page)">
@@ -65,7 +60,6 @@
       </div>
     </div>
 
-    <!-- Error Message -->
     <div v-if="error" class="alert alert-danger mt-3">
       {{ error }}
     </div>
@@ -85,7 +79,7 @@ export default {
       error: null,
       currentPage: 1,
       totalPages: 1,
-      searchEmail: "", // field for search
+      searchEmail: "", 
     };
   },
   methods: {
@@ -131,7 +125,7 @@ export default {
 
     onSearchInput() {
       if (!this.searchEmail) {
-        this.fetchUsers(); // reload all users automatically when field is cleared
+        this.fetchUsers(); 
       }
     },
   },

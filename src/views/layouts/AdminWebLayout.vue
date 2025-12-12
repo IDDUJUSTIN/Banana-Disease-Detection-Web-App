@@ -25,7 +25,7 @@
         <router-link to="/admin/user-actions" class="sidebar-link" active-class="active">
           <span class="link-content">
             <i class="fas fa-tasks"></i>
-            <span>User Activity</span>
+            <span>User Updates</span>
           </span>
         </router-link>
         <button class="sidebar-link logout-btn" @click="logout">
@@ -56,9 +56,9 @@ export default {
         localStorage.removeItem("token");
         localStorage.removeItem("user_id");
         localStorage.removeItem("role");
-        this.$router.push("/"); // back to login
+        this.$router.push("/"); 
       } else {
-        this.$router.push("/admin"); // stay in admin dashboard
+        this.$router.push("/admin"); 
       }
     },
   },

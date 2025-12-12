@@ -4,49 +4,49 @@
       <h1 class="title">🌿 Plant Disease Detection</h1>
       <p class="subtitle">Create your account</p>
 
-      <!-- First Name -->
+     
       <div class="input-wrapper">
         <i class="fas fa-user"></i>
         <input type="text" placeholder="First Name" v-model="first_name" class="input" />
       </div>
       <p v-if="errors.first_name" class="error">{{ errors.first_name }}</p>
 
-      <!-- Middle Name -->
+      
       <div class="input-wrapper">
         <i class="fas fa-user"></i>
         <input type="text" placeholder="Middle Name" v-model="middle_name" class="input" />
       </div>
       <p v-if="errors.middle_name" class="error">{{ errors.middle_name }}</p>
 
-      <!-- Last Name -->
+      
       <div class="input-wrapper">
         <i class="fas fa-user"></i>
         <input type="text" placeholder="Last Name" v-model="last_name" class="input" />
       </div>
       <p v-if="errors.last_name" class="error">{{ errors.last_name }}</p>
 
-      <!-- Contact Number -->
+    
       <div class="input-wrapper">
         <i class="fas fa-phone"></i>
         <input type="text" placeholder="Contact Number" v-model="contact_number" class="input" />
       </div>
       <p v-if="errors.contact_number" class="error">{{ errors.contact_number }}</p>
 
-      <!-- Email -->
+     
       <div class="input-wrapper">
         <i class="fas fa-envelope"></i>
         <input type="text" placeholder="Email" v-model="email" class="input" />
       </div>
       <p v-if="errors.email" class="error">{{ errors.email }}</p>
 
-      <!-- Username -->
+     
       <div class="input-wrapper">
         <i class="fas fa-user-circle"></i>
         <input type="text" placeholder="Username" v-model="username" class="input" />
       </div>
       <p v-if="errors.username" class="error">{{ errors.username }}</p>
 
-      <!-- Password -->
+     
       <div class="input-wrapper">
         <i class="fas fa-lock"></i>
         <input :type="showPassword ? 'text' : 'password'" placeholder="Password" v-model="password" class="input" />
@@ -55,7 +55,7 @@
       <p class="note">At least 8 chars, 1 uppercase, 1 number, 1 special.</p>
       <p v-if="errors.password" class="error">{{ errors.password }}</p>
 
-      <!-- Confirm Password -->
+      
       <div class="input-wrapper">
         <i class="fas fa-lock"></i>
         <input :type="showConfirmPassword ? 'text' : 'password'" placeholder="Confirm Password" v-model="password_confirmation" class="input" />
@@ -63,7 +63,7 @@
       </div>
       <p v-if="errors.password_confirmation" class="error">{{ errors.password_confirmation }}</p>
 
-      <!-- Buttons -->
+     
       <button type="button" class="btn signup-btn" @click="register">Sign up</button>
       <button type="button" class="btn login-btn" @click="goToLogin">Back to Login</button>
     </div>

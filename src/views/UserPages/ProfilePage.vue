@@ -2,14 +2,12 @@
   <div class="profile">
     <div class="profile-header">
       <h2>My Profile</h2>
-      <!-- Pencil icon navigates to EditPage -->
       <button class="edit-icon" @click="goToEdit">
         <i class="fas fa-edit"></i>
       </button>
 
     </div>
 
-    <!-- Display mode only -->
     <div>
       <div class="profile-field">
         <label>Full Name:</label>
@@ -58,7 +56,6 @@ export default {
   },
   methods: {
     goToEdit() {
-      // Navigate to your EditPage route
       this.$router.push({ name: "EditPage" });
     },
   },

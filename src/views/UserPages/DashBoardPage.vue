@@ -4,8 +4,6 @@
       <i class="fas fa-chart-line"></i> Dashboard
     </h2>
 
-
-    <!-- Quick Stats -->
     <div class="stats-grid">
       <div class="stat-card">
         <h3>Total Predictions</h3>
@@ -25,19 +23,16 @@
       </div>
     </div>
 
-    <!-- Add Farm Location Button -->
     <div class="text-center mt-4">
       <button @click="showForm = !showForm" class="btn btn-primary">
         {{ showForm ? '❌ Cancel' : '➕ Add Farm Location for Weather Update' }}
       </button>
     </div>
 
-    <!-- Location Form -->
     <div v-if="showForm" class="location-form card p-4 shadow-sm mt-3">
       <h4 class="mb-3 text-success fw-bold">
         <i class="fas fa-map-marker-alt"></i> Add New Farm Location
       </h4>
-
 
       <div class="mb-3">
         <label class="form-label">Province</label>
@@ -59,10 +54,8 @@
       </button>
     </div>
 
-    <!-- Weather Locations -->
     <div v-if="visibleWeatherList.length" class="weather-section mt-4">
       <div v-for="w in visibleWeatherList" :key="w.id" class="weather-location">
-        <!-- Edit Mode -->
         <div v-if="editingId === w.id" class="edit-form card p-3 mb-3">
           <h4 class="text-primary mb-3"> Edit Location</h4>
           <div class="mb-2">
@@ -83,7 +76,6 @@
           </div>
         </div>
 
-        <!-- View Mode -->
         <div v-else>
           <div class="d-flex justify-content-between align-items-center mb-3">
             <h3 class="weather-location-title mb-0">
@@ -127,7 +119,6 @@
       </div>
     </div>
 
-    <!-- Hidden Locations Section -->
     <div v-if="hiddenWeatherList.length" class="hidden-section mt-4">
       <h3 class="mb-3 text-center text-secondary"> Hidden Locations</h3>
       <div class="hidden-list">
@@ -141,7 +132,7 @@
         </div>
       </div>
     </div>
-    <!-- Forecast Graph -->
+
     <div class="card shadow-sm mt-4">
       <div class="card-body">
         <h4 class="mb-3">
@@ -151,8 +142,6 @@
         <canvas id="forecastChart"></canvas>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -193,7 +182,6 @@ export default {
 
   async mounted() {
     try {
-      // Fetch stats
       const statsResponse = await axios.get(this.baseUrl + "/stats", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -211,7 +199,6 @@ export default {
         }
       });
 
-      // Fetch saved farm weather
       const weatherResponse = await axios.get(this.baseUrl + "/weather", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
@@ -232,7 +219,6 @@ export default {
       const storedHiddenIds = localStorage.getItem("hiddenLocations");
       this.hiddenLocationIds = storedHiddenIds ? JSON.parse(storedHiddenIds) : [];
 
-      // Fetch forecast chart after data loads
       await this.fetchForecast();
     } catch (error) {
       console.error("Error loading dashboard:", error.response?.data || error);

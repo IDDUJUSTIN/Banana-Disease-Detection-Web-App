@@ -28,7 +28,6 @@
         <input v-model="form.contact_number" type="text" />
       </div>
 
-      <!-- Button group below form -->
       <div class="button-group">
         <button type="button" class="back-btn" @click="$router.back()">Back</button>
         <button type="submit" class="save-btn">Save</button>
@@ -57,10 +56,8 @@ export default {
   },
   async mounted() {
     try {
-      // Load profile data from backend
-      const { data } = await api.get("update"); // ✅ use correct endpoint
+      const { data } = await api.get("update"); 
 
-      // Directly assign separate fields
       this.form.first_name = data.first_name || "";
       this.form.middle_name = data.middle_name || "";
       this.form.last_name = data.last_name || "";

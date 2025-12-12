@@ -64,12 +64,10 @@ export default {
           if (response.status === 200) {
             const user = response.data.user;
 
-            // Save token and user info
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("user_id", user.id);
             localStorage.setItem("role", user.role);
 
-            // ✅ Redirect based on role
             if (user.role === "admin") {
               this.$router.push("/admin");
             } else {

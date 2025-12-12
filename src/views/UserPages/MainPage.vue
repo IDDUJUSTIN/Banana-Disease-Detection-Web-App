@@ -3,7 +3,7 @@
     <h2 class="text-center mb-4"> Banana Leaf Disease Prediction</h2>
 
     <form @submit.prevent="predict" enctype="multipart/form-data" class="text-center">
-      <!-- Upload Box -->
+
       <div class="upload-box mb-3" @click="triggerFileInput">
         <template v-if="preview">
           <img :src="preview" class="img-fluid rounded" style="max-width:100%; max-height:100%;" />
@@ -14,7 +14,6 @@
         <input ref="fileInput" type="file" id="image" accept="image/*" @change="handleFileUpload" hidden />
       </div>
 
-      <!-- Identify Button -->
       <button type="submit" class="btn btn-success btn-lg mt-3" :disabled="!formData">
         Identify Disease
       </button>
@@ -22,17 +21,14 @@
 
     <hr class="my-4" />
 
-    <!-- Prediction Result -->
     <div v-if="result" :class="['alert', resultClass]" v-html="result"></div>
 
-    <!-- Show Treatment Button -->
     <div v-if="prediction && prediction.toLowerCase() !== 'unknown'" class="text-center mt-3">
       <button @click="showTreatment" class="btn btn-info btn-lg">
         Show Best Treatment
       </button>
     </div>
 
-    <!-- Treatment Message -->
     <div v-if="treatmentMessage" class="alert alert-primary mt-3" v-html="treatmentMessage"></div>
   </div>
 </template>
@@ -50,8 +46,8 @@ export default {
       preview: null,
       result: null,
       resultClass: "alert-success",
-      prediction: null,          // store prediction
-      treatmentMessage: null,    // store treatment message
+      prediction: null,          
+      treatmentMessage: null,    
     };
   },
   methods: {
@@ -64,7 +60,6 @@ export default {
       this.formData.append("image", file);
       this.preview = URL.createObjectURL(file);
 
-      // ✅ Reset previous results when new photo is uploaded
       this.result = null;
       this.prediction = null;
       this.treatmentMessage = null;
@@ -80,9 +75,7 @@ export default {
         });
 
         const data = response.data;
-        this.prediction = data.prediction; // store prediction
-
-        // Handle Unknown prediction (no record saved)
+        this.prediction = data.prediction; 
         if (data.prediction && data.prediction.toLowerCase() === "unknown") {
           this.resultClass = "alert-warning";
           this.result = `
@@ -92,15 +85,12 @@ export default {
           `;
           return;
         }
-
-        // Normal case (record exists)
         this.resultClass = "alert-success";
         this.result = `
           <strong>Prediction:</strong> ${data.prediction}<br>
           <strong>Confidence:</strong> ${(data.confidence_level * 100).toFixed(2)}%<br>
           <strong>Uploaded:</strong> ${new Date(data.record.created_at).toLocaleString()}
         `;
-
       } catch (error) {
         console.error(error.response?.data || error);
         this.resultClass = "alert-danger";

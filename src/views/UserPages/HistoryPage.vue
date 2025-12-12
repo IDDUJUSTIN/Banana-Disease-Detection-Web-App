@@ -29,8 +29,6 @@
       </tbody>
     </table>
 
-    <!-- Pagination Controls -->
-    <!-- Pagination Controls -->
 <div class="d-flex justify-content-between align-items-center mt-4">
   <button
     class="btn btn-outline-success"
@@ -40,7 +38,6 @@
     ← Previous
   </button>
 
-  <!-- Dynamic Page Numbers -->
   <div>
     <button
       v-for="page in visiblePages"
@@ -111,19 +108,14 @@ export default {
     const pages = [];
     const total = this.totalPages;
     const current = this.currentPage;
-    const maxVisible = 10; // show up to 10 pages
-
-    // Center current page in the window
+    const maxVisible = 10; 
     let start = current - Math.floor(maxVisible / 2);
     let end = current + Math.floor(maxVisible / 2);
-
-    // Adjust if start < 1
     if (start < 1) {
       start = 1;
       end = Math.min(maxVisible, total);
     }
 
-    // Adjust if end > total
     if (end > total) {
       end = total;
       start = Math.max(total - maxVisible + 1, 1);

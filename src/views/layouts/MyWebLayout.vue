@@ -1,6 +1,5 @@
 <template>
   <div class="layout">
-    <!-- Sidebar -->
     <aside class="sidebar">
       <h3 class="sidebar-title">🌿 Plant Disease Prediction</h3>
       <nav class="sidebar-nav">
@@ -36,8 +35,6 @@
         </button>
       </nav>
     </aside>
-
-    <!-- Main content -->
     <main class="content">
       <slot>
         <router-view/>
